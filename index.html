@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário WhatsApp</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #c2aec5, #c85dde);
+  }
+  
+
+  .form-container {
+    background-color: #cb58c7;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 300px;
+    text-align: center;
+  }
+  
+</style>
+<body>
+  <div class="form-container">
+<form>
+  <h2>Bem-vindo!</h2> 
+  <form id="whatsappForm">
+    <label for="nome">Nome:</label><br>
+    <input type="text" id="nome" name="nome" required><br><br>
+
+    <label for="mensagem">Mensagem:</label><br>
+    <textarea id="mensagem" name="mensagem" required></textarea><br><br>
+
+    <label for="telefone">Telefone:</label><br>
+    <input type="tel" id="telefone" name="telefone" required><br><br>
+
+  
+    <button type="button" onclick="enviarWhatsApp()">Envie Aqui.</button>
+  </form>
+</div>
+
+  <script>
+    function enviarWhatsApp() {
+      const nome = document.getElementById("nome").value.trim();
+      const mensagem = document.getElementById("mensagem").value.trim();
+      const telefone = document.getElementById("telefone").value.trim();
+
+      if (!nome || !mensagem || !telefone) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+    
+      const texto = `Nome: ${nome}\nMensagem: ${mensagem}\nTelefone: ${telefone}`;
+      const textoCodificado = encodeURIComponent(texto);
+
+    
+      window.open("https://api.whatsapp.com/send?phone=5581996846483&text=" + textoCodificado, "_blank");
+    }
+</script>
+</body>
+</html>
